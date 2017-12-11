@@ -47,28 +47,48 @@ void pop_front(list_element * & head)
     }
 }
 
+void usun_8(list_element * & head, list_element * e)
+{
+    list_element * p;
+
+    if(head == e) pop_front(head);
+    else
+    {
+        p = head;
+        while(p->next_element != e) p = p->next_element;
+        p->next_element = e->next_element;
+        delete e;
+    }
+}
+
+
+
+
 int main()
 {
-    list_element * L = NULL;
+    list_element * start = NULL; // ustawiamy wskaźnik na NUll
 
-    show(L);
+    show(start);
     cout<<"push x 3"<<endl<<endl;
-    push_front(L,1);
-    push_front(L,8);
-    push_front(L,9);
-    show(L);
+    push_front(start,1);
+    push_front(start,8);
+    push_front(start,9);
+    show(start);
     cout<<"Teraz pop x 1"<<endl;
-    pop_front(L);
-    show(L);
+    pop_front(start);
+    show(start);
     cout<<"pop"<<endl;
-    pop_front(L);
-    show(L);
+    pop_front(start);
+    show(start);
     cout<<"Push"<<endl;
-    push_front(L,8);
-    show(L);
+    push_front(start,8);
+    show(start);
     cout<<"Push"<<endl;
-    push_front(L,9);
-    show(L);
+    push_front(start,9);
+
+    usun_8(start,8);
+
+    show(start);
     cout<<"Ok wystarczy"<<endl;
 
     return 0;
