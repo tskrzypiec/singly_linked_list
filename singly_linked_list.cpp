@@ -47,7 +47,7 @@ void pop_front(list_element * & head)
     }
 }
 
-void usun_8(list_element * & head, list_element * e)
+void delete_element(list_element *&head, list_element *e)
 {
     list_element * p;
 
@@ -62,17 +62,16 @@ void usun_8(list_element * & head, list_element * e)
 }
 
 
-
-
 int main()
 {
     list_element * start = NULL; // ustawiamy wskaźnik na NUll
+    list_element * e;
 
     show(start);
     cout<<"push x 3"<<endl<<endl;
     push_front(start,1);
-    push_front(start,8);
-    push_front(start,9);
+    push_front(start,2);
+    push_front(start,3);
     show(start);
     cout<<"Teraz pop x 1"<<endl;
     pop_front(start);
@@ -81,15 +80,15 @@ int main()
     pop_front(start);
     show(start);
     cout<<"Push"<<endl;
-    push_front(start,8);
+    push_front(start,3);
     show(start);
     cout<<"Push"<<endl;
-    push_front(start,9);
-
-    usun_8(start,8);
-
+    push_front(start,2);
     show(start);
-    cout<<"Ok wystarczy"<<endl;
+    cout<<" Usuń liczbę 1 "<<endl;
+    delete_element(start, start->next_element->next_element); // usuwamy liczbę 1
+    show(start);
+
 
     return 0;
 }
