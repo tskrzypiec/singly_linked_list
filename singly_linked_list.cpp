@@ -17,7 +17,7 @@ void show(list_element * p)
     cout<<"Liczby które mamy to: "<<endl;
 
     for(i = 1; p; p = p->next_element)                                  // nową wartość zmiennej to adres następnego elementu listy (przechowywany w polu next bieżącego elementu)
-        cout << "Liczba  " << i++ << " to: " << p->liczba << endl;     // w ostatnim elemencie listy w polu next przechowywany jest adres 0
+        cout << "Liczba  " << i++ << " to: " << p->liczba << " " << &p->liczba << endl;     // w ostatnim elemencie listy w polu next przechowywany jest adres 0
     cout << endl;
 
 }
@@ -61,18 +61,30 @@ void delete_element(list_element *&head, list_element *e)
     }
 }
 
+list_element* find_first(list_element * head, int v)
+{
+list_element * p = head;
+while(p && p->liczba != v) p = p->next_element;
+return p;
+}
+
+
+
+
+
 
 int main()
 {
     list_element * start = NULL; // ustawiamy wskaźnik na NUll
     list_element * e;
+    list_element* test;
 
     show(start);
     cout<<"push x 3"<<endl<<endl;
     push_front(start,1);
     push_front(start,2);
     push_front(start,3);
-    show(start);
+   /* show(start);
     cout<<"Teraz pop x 1"<<endl;
     pop_front(start);
     show(start);
@@ -86,8 +98,12 @@ int main()
     push_front(start,2);
     show(start);
     cout<<" Usuń liczbę 1 "<<endl;
-    delete_element(start, start->next_element->next_element); // usuwamy liczbę 1
+    //delete_element(start, start->next_element->next_element); // usuwamy liczbę 1 */
+    test = find_first(start, 1);
+    std::cout << &test->liczba << std::endl;
+
     show(start);
+
 
 
     return 0;
