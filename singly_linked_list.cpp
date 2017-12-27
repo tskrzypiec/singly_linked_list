@@ -69,6 +69,7 @@ int main()
 {
     list_element * start = NULL; // ustawiamy wskaźnik na NUll
 
+
     cout<<"Lista jest pusta, dodaj coś"<<endl<<endl;
     cout<<"push x 3"<<endl<<endl;
     push_front(start,1);
