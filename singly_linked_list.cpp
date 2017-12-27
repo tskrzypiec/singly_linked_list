@@ -61,11 +61,25 @@ void delete_element(list_element *&head, list_element *e)
     }
 }
 
-list_element* find_first(list_element * head, int v)
+ list_element* find_first(list_element * &head, int v)
 {
-list_element * p = head;
-while(p && p->liczba != v) p = p->next_element;
-return p;
+list_element * p_find_element = head;
+while(p_find_element && p_find_element->liczba != v) p_find_element = p_find_element->next_element;
+//return p_find_element;
+    //delete_element(start, find_first(list_element * head, int v));
+     //list_element * head= list_element *&head;
+
+   list_element * p;
+    if(head == p_find_element) pop_front(head);
+    else
+    {
+        p = head;
+        while(p->next_element != p_find_element) p = p->next_element;
+        p->next_element = p_find_element->next_element;
+        delete p_find_element;
+    }
+
+//return 0;
 }
 
 
@@ -99,8 +113,9 @@ int main()
     show(start);
     cout<<" Usuń liczbę 1 "<<endl;
     //delete_element(start, start->next_element->next_element); // usuwamy liczbę 1 */
-    test = find_first(start, 1);
+    test = find_first(start, 2);
     std::cout << &test->liczba << std::endl;
+   // delete_element(start, find_first(start, 1)); // usuwamy liczbę 1 */
 
     show(start);
 
