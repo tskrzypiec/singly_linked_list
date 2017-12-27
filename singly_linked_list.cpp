@@ -17,7 +17,7 @@ void show(list_element * p)
     cout<<"Liczby które mamy to: "<<endl;
 
     for(i = 1; p; p = p->next_element)                                  // nową wartość zmiennej to adres następnego elementu listy (przechowywany w polu next bieżącego elementu)
-        cout << "Liczba  " << i++ << " to: " << p->liczba << " " << &p->liczba << endl;     // w ostatnim elemencie listy w polu next przechowywany jest adres 0
+        cout << "Liczba  " << i++ << " to: " << p->liczba << endl;     // w ostatnim elemencie listy w polu next przechowywany jest adres 0
     cout << endl;
 
 }
@@ -47,79 +47,50 @@ void pop_front(list_element * & head)
     }
 }
 
-void delete_element(list_element *&head, list_element *e)
+void find_and_delete(list_element *&head, int v)
 {
-    list_element * p;
+    list_element *p_find_element = head;
 
-    if(head == e) pop_front(head);
-    else
-    {
+    while (p_find_element && p_find_element->liczba != v) p_find_element = p_find_element->next_element;
+
+    list_element *p;
+
+    if (head == p_find_element) pop_front(head);
+    else {
         p = head;
-        while(p->next_element != e) p = p->next_element;
-        p->next_element = e->next_element;
-        delete e;
-    }
-}
-
- list_element* find_first(list_element * &head, int v)
-{
-list_element * p_find_element = head;
-while(p_find_element && p_find_element->liczba != v) p_find_element = p_find_element->next_element;
-//return p_find_element;
-    //delete_element(start, find_first(list_element * head, int v));
-     //list_element * head= list_element *&head;
-
-   list_element * p;
-    if(head == p_find_element) pop_front(head);
-    else
-    {
-        p = head;
-        while(p->next_element != p_find_element) p = p->next_element;
+        while (p->next_element != p_find_element) p = p->next_element;
         p->next_element = p_find_element->next_element;
         delete p_find_element;
     }
-
-//return 0;
 }
-
-
-
-
 
 
 int main()
 {
     list_element * start = NULL; // ustawiamy wskaźnik na NUll
-    list_element * e;
-    list_element* test;
 
-    show(start);
+    cout<<"Lista jest pusta, dodaj coś"<<endl<<endl;
     cout<<"push x 3"<<endl<<endl;
     push_front(start,1);
     push_front(start,2);
     push_front(start,3);
-   /* show(start);
-    cout<<"Teraz pop x 1"<<endl;
+    show(start);
+    cout<<"Teraz coś zabierz z listy"<<endl<<endl;
+    cout<<"pop"<<endl<<endl;
     pop_front(start);
     show(start);
-    cout<<"pop"<<endl;
+    cout<<"pop"<<endl<<endl;
     pop_front(start);
     show(start);
-    cout<<"Push"<<endl;
+    cout<<"push"<<endl<<endl;
     push_front(start,3);
     show(start);
-    cout<<"Push"<<endl;
+    cout<<"push"<<endl<<endl;
     push_front(start,2);
     show(start);
-    cout<<" Usuń liczbę 1 "<<endl;
-    //delete_element(start, start->next_element->next_element); // usuwamy liczbę 1 */
-    test = find_first(start, 2);
-    std::cout << &test->liczba << std::endl;
-   // delete_element(start, find_first(start, 1)); // usuwamy liczbę 1 */
-
+    cout<<"Skasuj z listy liczbę 1 "<<endl<<endl;
+    find_and_delete(start, 1);
     show(start);
-
-
 
     return 0;
 }
