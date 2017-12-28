@@ -22,7 +22,7 @@ void show(list_element * p)
 
 }
 
-// dodaj element na początek listy
+// dodaj element na koniec listy
 
 void push_front(list_element * & head, int ile)
 {
@@ -51,11 +51,11 @@ void find_and_delete(list_element *&head, int v)
 {
     list_element *p_find_element = head;
 
-    while (p_find_element && p_find_element->liczba != v) p_find_element = p_find_element->next_element;
+    while (p_find_element && p_find_element->liczba != v) p_find_element = p_find_element->next_element; // szukamy adresu poszukiwanej liczby
 
     list_element *p;
 
-    if (head == p_find_element) pop_front(head);
+    if (head == p_find_element) pop_front(head); // usuwamy określoną liczbę
     else {
         p = head;
         while (p->next_element != p_find_element) p = p->next_element;
